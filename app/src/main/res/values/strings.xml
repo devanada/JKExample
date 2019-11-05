@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JKExample</string>
+    <string name="api_key">0e6ab6977a441feefe861571f011429c</string>
+    <string name="base_path_poster">https://image.tmdb.org/t/p/w500</string>
+</resources>
