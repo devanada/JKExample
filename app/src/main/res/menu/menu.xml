@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/dependency"
+            android:title="Dependency Injection"/>
+    <item
+            android:id="@+id/debounce"
+            android:title="Debounce Test"/>
+    <item
+            android:id="@+id/sqlite"
+            android:title="SQLite Test"/>
+    <item
+            android:id="@+id/action_logout"
+            android:title="Logout"/>
+</menu>
