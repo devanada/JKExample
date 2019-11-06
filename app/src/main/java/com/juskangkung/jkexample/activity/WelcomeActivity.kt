@@ -1,14 +1,15 @@
-package com.juskangkung.jkexample
+package com.juskangkung.jkexample.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import android.widget.Button
 import android.util.Log
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.juskangkung.jkexample.PreferenceHelper
+import com.juskangkung.jkexample.R
 import com.juskangkung.jkexample.adapter.MovieAdapter
 import com.juskangkung.jkexample.model.Movie
 import com.juskangkung.jkexample.model.MovieResponse
@@ -22,7 +23,6 @@ import retrofit2.Response
 class WelcomeActivity : AppCompatActivity() {
     private val TAG : String = WelcomeActivity::class.java.canonicalName
     private lateinit var movies : ArrayList<Movie>
-    private var btnlogout: Button? = null
     private var preferenceHelper: PreferenceHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,14 +31,6 @@ class WelcomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         preferenceHelper = PreferenceHelper(this)
-        btnlogout = findViewById<View>(R.id.btn) as Button
-        btnlogout!!.setOnClickListener {
-            preferenceHelper!!.putIsLogin(false)
-            val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            this@WelcomeActivity.finish()
-        }
 
         rvMovies.layoutManager = androidx.recyclerview.widget.GridLayoutManager(applicationContext, 2)
 
@@ -49,6 +41,41 @@ class WelcomeActivity : AppCompatActivity() {
 
         collapseImage.setOnClickListener {
             Toast.makeText(applicationContext, "Poster Gede", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.dependency -> {
+                val intent = Intent(this, DIActivity::class.java)
+                this.startActivity(intent)
+                true
+            }
+            R.id.debounce -> {
+                val intent = Intent(this, DebounceActivity::class.java)
+                this.startActivity(intent)
+                true
+            }
+            R.id.sqlite -> {
+                val intent = Intent(this, SQLiteActivity::class.java)
+                this.startActivity(intent)
+                true
+            }
+            R.id.action_logout -> {
+                preferenceHelper!!.putIsLogin(false)
+                val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                this@WelcomeActivity.finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

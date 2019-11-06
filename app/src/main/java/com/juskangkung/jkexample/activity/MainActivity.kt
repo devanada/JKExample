@@ -1,9 +1,8 @@
-package com.juskangkung.jkexample
+package com.juskangkung.jkexample.activity
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.android.extension.responseJson
+import com.juskangkung.jkexample.PreferenceHelper
+import com.juskangkung.jkexample.R
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import java.util.HashMap
 
 class MainActivity : AppCompatActivity() {
 
